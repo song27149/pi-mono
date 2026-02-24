@@ -4324,6 +4324,42 @@ export const MODELS = {
 			maxTokens: 32768,
 		} satisfies Model<"anthropic-messages">,
 	},
+	"deepseek": {
+		"deepseek-chat": {
+			id: "deepseek-chat",
+			name: "DeepSeek Chat",
+			api: "openai-completions",
+			provider: "deepseek",
+			baseUrl: "https://api.deepseek.com",
+			reasoning: true,
+			input: ["text", "image"],
+			cost: {
+				input: 0,
+				output: 0,
+				cacheRead: 0,
+				cacheWrite: 0,
+			},
+			contextWindow: 262144,
+			maxTokens: 32768,
+		} satisfies Model<"openai-completions">,
+		"deepseek-reasoner": {
+			id: "deepseek-reasoner",
+			name: "DeepSeek Reasoner",
+			api: "openai-completions",
+			provider: "deepseek",
+			baseUrl: "https://api.deepseek.com",
+			reasoning: true,
+			input: ["text"],
+			cost: {
+				input: 0,
+				output: 0,
+				cacheRead: 0,
+				cacheWrite: 0,
+			},
+			contextWindow: 262144,
+			maxTokens: 32768,
+		} satisfies Model<"openai-completions">,
+	},
 	"minimax": {
 		"MiniMax-M2": {
 			id: "MiniMax-M2",

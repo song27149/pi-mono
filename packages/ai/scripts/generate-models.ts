@@ -1305,6 +1305,41 @@ async function generateModels() {
 		}
 	}
 
+	// deepseek models
+	const deepSeekModels: Model<"openai-completions">[] = [
+		{
+			id: "deepseek-chat",
+			name: "deepseek-chat",
+			api: "openai-completions",
+			provider: "deepseek",
+			baseUrl: "https://api.deepseek.com",
+			reasoning: true,
+			input: ["text"],
+			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+			contextWindow: 262144,
+			maxTokens: 8192,
+		},
+		{
+			id: "deepseek-reasoner",
+			name: "deepseek-reasoner",
+			api: "openai-completions",
+			provider: "deepseek",
+			baseUrl: "https://api.deepseek.com",
+			reasoning: true,
+			input: ["text"],
+			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+			contextWindow: 262144,
+			maxTokens: 65536,
+		},
+	];
+	// Only add if not already present from models.dev
+	for (const model of deepSeekModels) {
+		if (!allModels.some(m => m.provider === "deepseek" && m.id === model.id)) {
+			allModels.push(model);
+		}
+	}
+
+
 	const azureOpenAiModels: Model<Api>[] = allModels
 		.filter((model) => model.provider === "openai" && model.api === "openai-responses")
 		.map((model) => ({
